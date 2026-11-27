@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>收款账户 · 去掉银行卡 · 需求说明</title>
+  <style>
+    :root { --bg: #f3f5f7; --ink: #1f1f1f; --sub: #595959; --line: #e6e8eb; --red: #cf1322; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; }
+    h1 { margin: 0; font-size: 26px; }
+    h2 { margin: 0 0 12px; font-size: 16px; }
+    .lead { margin: 8px 0 0; color: var(--sub); }
+    .card { background: #fff; border-radius: 12px; padding: 18px; margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td:first-child { white-space: nowrap; width: 88px; }
+    th { background: #fafafa; color: var(--sub); font-weight: 550; }
+    .mark { display: inline-block; border-radius: 4px; font-size: 12px; padding: 0 6px; line-height: 20px; background: #fff1f0; color: var(--red); }
+    figure { margin: 0; }
+    figcaption { margin: 0 0 8px; color: var(--ink); font-size: 13px; font-weight: 600; }
+    .compare { display: grid; grid-template-columns: 280px 280px; gap: 28px; align-items: start; margin-top: 16px; }
+    @media (max-width: 700px) { .compare { grid-template-columns: 1fr; } }
+    img { width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
+    .phone { width: 280px; max-width: 100%; border: 1px solid var(--line); border-radius: 28px; background: #f7f8fa; overflow: hidden; padding-bottom: 16px; }
+    .phone header { height: 48px; display: flex; align-items: center; justify-content: center; background: #fff; font-weight: 600; position: relative; }
+    .phone header i { position: absolute; left: 16px; font-style: normal; color: #8c8c8c; }
+    .block { margin: 12px; background: #fff; border-radius: 12px; padding: 14px; }
+    .block h3 { margin: 0 0 8px; font-size: 15px; }
+    .idcard { display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 10px; background: linear-gradient(90deg, #e7f4ff, #f7e9f4); }
+    .badge { width: 36px; height: 36px; border-radius: 50%; background: #e23b3b; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; flex: none; }
+    .idcard b { display: block; font-size: 15px; }
+    .idcard span { color: #8c8c8c; font-size: 12px; }
+    .tip { margin: 0 0 10px; color: #8c8c8c; font-size: 12px; }
+    .method { width: 148px; height: 72px; border: 1px solid #d9d9d9; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 6px; background: #fff; position: relative; }
+    .method.on { border-color: #d4a017; }
+    .method.on:after { content: ""; position: absolute; right: 0; top: 0; border: 10px solid #d4a017; border-left-color: transparent; border-bottom-color: transparent; }
+    .wx { width: 18px; height: 18px; border-radius: 50%; background: #2aae67; color: #fff; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; }
+    .auth { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .auth b { color: var(--red); font-weight: 500; }
+    .btn-auth { border: 1px solid #d9d9d9; background: #fff; border-radius: 16px; height: 32px; padding: 0 12px; font: inherit; }
+    .save { display: block; width: calc(100% - 24px); margin: 28px 12px 0; height: 44px; border: 0; border-radius: 22px; background: #f5c542; font: inherit; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>收款账户 · 去掉银行卡</h1>
+    <p class="lead">从「个人信息 → 收款账户管理」进入添加收款账户时，不再展示银行卡。不论用户有没有拿过和银行卡关联的通用金，都不出现。</p>
+
+    <section class="card">
+      <h2>这次改什么</h2>
+      <table>
+        <thead><tr><th></th><th>规则</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>入口</td>
+            <td>个人信息 → 收款账户管理 → 添加收款账户</td>
+          </tr>
+          <tr>
+            <td>银行卡</td>
+            <td><span class="mark">去掉</span> 收款方式里的银行卡，包括「必须绑定一类卡」</td>
+          </tr>
+          <tr>
+            <td>范围</td>
+            <td>这个入口统一不展示。不再按是否拿过银行卡关联通用金来决定出不出现</td>
+          </tr>
+          <tr>
+            <td>微信</td>
+            <td>仍可添加。微信账号、点击授权、保存保留</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="compare">
+        <figure>
+          <figcaption>当前页面</figcaption>
+          <img src="assets/payout-account/01-add.png" alt="添加收款账户，含银行卡" />
+        </figure>
+        <figure>
+          <figcaption>调整后</figcaption>
+          <div class="phone">
+            <header><i>×</i>添加收款账户</header>
+            <div class="block">
+              <h3>实名信息</h3>
+              <div class="idcard">
+                <span class="badge">徽</span>
+                <div><b>姓*名</b><span>**************　</span></div>
+              </div>
+            </div>
+            <div class="block">
+              <h3>收款信息</h3>
+              <p class="tip">请添加和实名信息匹配的收款账户，避免充值失败</p>
+              <div class="method on"><span class="wx">微</span>微信</div>
+              <div class="auth"><b>* 微信账号</b><button class="btn-auth" type="button">点击授权</button></div>
+            </div>
+            <button class="save" type="button">保存</button>
+          </div>
+        </figure>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
